@@ -1,14 +1,15 @@
-import os
-from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+import os from telegram import Update from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters from openai import OpenAI
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN") OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=OPENAI_API_KEY)
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE): await update.message.reply_text("ربات هوش مصنوعی روشنه آهورا! هرچی خواستی بفرست.")
+async def ai_chat(update: Update, context: ContextTypes.DEFAULT_TYPE): user_text = update.message.text
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": user_text}]
+)
 
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
-
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Bot is online!")
-
+answer = response.choices[0].message.content
+await update.message.reply_text(answer)
 app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
-app.add_handler(CommandHandler("start", start))
-
-print("Bot is running...")
-app.run_polling()
+app.add_handler(CommandHandler("start", start)) app.add_handler(MessageHandler(filters.TEXT, ai_chat))
+print("AI Bot is running...") app.run_polling()
