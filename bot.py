@@ -26,7 +26,7 @@ async def ai_chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     logger.info(f"User said: {user_text}")
     
     try:
-    response = client.chat.completions.create(
+        response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[{"role": "user", "content": user_text}]
     )
