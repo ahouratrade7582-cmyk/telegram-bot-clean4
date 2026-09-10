@@ -27,7 +27,7 @@ async def ai_chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     try:
         response = client.chat.completions.create(
-            model="llama3.1-70b-versatile",
+            model="llama3.1-8b-instant",
             messages=[{"role": "user", "content": user_text}]
         )
         answer = response.choices[0].message.content
