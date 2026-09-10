@@ -27,7 +27,7 @@ async def ai_chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     try:
         response = client.chat.completions.create(
-            model="llama3-8b-8192",
+            model="gemma-2-9b-it",
             messages=[{"role": "user", "content": user_text}]
         )
         answer = response.choices[0].message.content
