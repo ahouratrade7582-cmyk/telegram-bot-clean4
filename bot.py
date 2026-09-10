@@ -2,7 +2,7 @@ import os
 import logging 
 from telegram import Update 
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters 
-from openai import OpenAI
+from groq import Groq
 
 logging.basicConfig( 
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", 
@@ -11,12 +11,12 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN") 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 logger.info(f"Loaded TELEGRAM_TOKEN: {bool(TELEGRAM_TOKEN)}") 
-logger.info(f"Loaded OPENAI_API_KEY: {bool(OPENAI_API_KEY)}")
+logger.info(f"Loaded GROQ_API_KEY: {bool(OPENAI_API_KEY)}")
 
-client = OpenAI(api_key=OPENAI_API_KEY)
+client = Groq(api_key=GROQ_API_KEY)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE): 
     await update.message.reply_text("AI bot is online and ready.")
@@ -27,7 +27,7 @@ async def ai_chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     try:
         response = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="llama3-8b-8192",
             messages=[{"role": "user", "content": user_text}]
         )
         answer = response.choices[0].message.content
