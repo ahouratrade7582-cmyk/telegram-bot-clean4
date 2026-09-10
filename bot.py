@@ -14,7 +14,7 @@ TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 logger.info(f"Loaded TELEGRAM_TOKEN: {bool(TELEGRAM_TOKEN)}") 
-logger.info(f"Loaded GROQ_API_KEY: {bool(OPENAI_API_KEY)}")
+logger.info(f"Loaded GROQ_API_KEY: {bool(GROQ_API_KEY)}")
 
 client = Groq(api_key=GROQ_API_KEY)
 
