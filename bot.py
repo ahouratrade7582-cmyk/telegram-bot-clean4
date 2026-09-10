@@ -30,8 +30,7 @@ try:
         model="gpt-4o-mini",
         messages=[{"role": "user", "content": user_text}]
     )
-    answer = response.choices[0].message.content
-    await update.message.reply_text(answer)
+    answer = response.choices[0].message.contentawait update.message.reply_text(answer)
     logger.info("Reply sent successfully.")
 except Exception as e:
     logger.error(f"OpenAI error: {e}")
