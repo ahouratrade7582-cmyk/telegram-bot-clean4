@@ -3,6 +3,7 @@ import logging
 from telegram import Update 
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters 
 from openai import OpenAI
+client = openAI(api_key=OPENAI_API_KEY)
 Logging setup
 logging.basicConfig( 
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", 
