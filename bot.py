@@ -35,7 +35,7 @@ async def ai_chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
         logger.info("Reply sent successfully.")
     except Exception as e:
         logger.error(f"OpenAI error: {e}")
-        await update.message.reply_text("An internal error occurred, but the bot is still running.")
+        await update.message.reply_text(f"Error details: {e}")
     
 app = ApplicationBuilder().token(TELEGRAM_TOKEN).build() 
 app.add_handler(CommandHandler("start", start)) 
