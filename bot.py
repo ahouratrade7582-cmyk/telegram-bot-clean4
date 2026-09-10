@@ -27,8 +27,8 @@ async def ai_chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     try:
         response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[{"role": "user", "content": user_text}]
+            model="gpt-4o-mini",
+            messages=[{"role": "user", "content": user_text}]
     )
     answer = response.choices[0].message.content
     await update.message.reply_text(answer)
