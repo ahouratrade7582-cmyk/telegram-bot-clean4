@@ -33,7 +33,6 @@ try:
     answer = response.choices[0].message.content
     await update.message.reply_text(answer)
     logger.info("Reply sent successfully.")
-
 except Exception as e:
     logger.error(f"OpenAI error: {e}")
     await update.message.reply_text("An internal error occurred, but the bot is still running.")
