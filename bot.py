@@ -54,17 +54,33 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.edit_message_text("زبان به فارسی تغییر یافت")
 
 async def ai_chat(update: Update, context: ContextTypes.DEFAULT_TYPE): 
-    user_text = update.message.text 
+    user_text = update.message.text
+
+    if len(user_text) > 8000:
+        user_text = user_text[:8000]
     logger.info(f"User said: {user_text}")
+    if not user_text.strip()
+        await update.message.reply_text("Please Give a Text So I Can Answer It")
+        return
+
     
     try:
         response = client.chat.completions.create(
             model="openai/gpt-oss-20b",
-            max_tokens=4096,
-            messages=[{"role": "user", "content": user_text}]
+            max_tokens=8192,
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": user_text}
+            ]
         )
         answer = response.choices[0].message.content
-        await update.message.reply_text(answer)
+
+        def split_message(text, limit=4000):
+            return [text[i:i+limit] for i in range(0, len(text), limit)]
+
+        for part in split_message(answer):
+            await update.message.reply_text(part)
+        
         logger.info("Reply sent successfully.")
     except Exception as e:
         await update.message.reply_text(f"Error details: {e}")
