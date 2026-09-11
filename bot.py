@@ -5,8 +5,15 @@ from telegram import (
     InlineKeyboardButton,
     InlineKeyboardMarkup
 )
-from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, CallbackQueryHandler, ContextTypes, filters
+from telegram.ext import 
+    ApplicationBuilder, 
+    CommandHandler, 
+    MessageHandler, 
+    CallbackQueryHandler, 
+    ContextTypes, 
+    filters
 from telegram.ext import CallbackQueryHandler
+
 from groq import Groq
 
 logging.basicConfig( 
@@ -48,7 +55,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if query.data == "lang_en":
         await query.edit_message_text("Language set to English")
     elif query.data == "lang_nl":
-        await query.edit_message_text("Taal ingesteld op Dutch")
+        await query.edit_message_text("Taal ingesteld op Nederlands")
     elif query.data == "lang_fa":
         await query.edit_message_text("زبان به فارسی تغییر یافت")
 
@@ -74,5 +81,4 @@ app.add_handler(CommandHandler("start", start))
 app.add_handler(CallbackQueryHandler(button_handler))
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, ai_chat))
 
-logger.info("AI Bot is running...") 
 app.run_polling()
