@@ -5,13 +5,7 @@ from telegram import (
     InlineKeyboardButton,
     InlineKeyboardMarkup
 )
-from telegram.ext import 
-    ApplicationBuilder, 
-    CommandHandler, 
-    MessageHandler, 
-    CallbackQueryHandler, 
-    ContextTypes, 
-    filters
+from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, CallbackQueryHandler, ContextTypes, filters
 from telegram.ext import CallbackQueryHandler
 
 from groq import Groq
