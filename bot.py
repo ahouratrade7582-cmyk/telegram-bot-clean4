@@ -27,7 +27,7 @@ client = Groq(api_key=GROQ_API_KEY)
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     welcome_text = (
 "Welcome to the Official bot of ahrWWR™ "
-        "Please select your language:"
+        "Please select your language 👉:"
     )
 
     keyboard = [
@@ -60,7 +60,7 @@ async def ai_chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_text = user_text[:8000]
     logger.info(f"User said: {user_text}")
     if not user_text.strip():
-        await update.message.reply_text("Please Give a Text So I Can Answer It")
+        await update.message.reply_text("Please Send Me a Message So I Can Reply 🔥")
         return
 
     
