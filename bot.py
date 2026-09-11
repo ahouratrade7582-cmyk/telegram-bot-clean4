@@ -26,7 +26,7 @@ client = Groq(api_key=GROQ_API_KEY)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     welcome_text = (
-"Welcome to the Official bot of ahrWWR "
+"Welcome to the Official bot of ahrWWR™ "
         "Please select your language:"
     )
 
