@@ -59,7 +59,7 @@ async def ai_chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if len(user_text) > 8000:
         user_text = user_text[:8000]
     logger.info(f"User said: {user_text}")
-    if not user_text.strip()
+    if not user_text.strip():
         await update.message.reply_text("Please Give a Text So I Can Answer It")
         return
 
